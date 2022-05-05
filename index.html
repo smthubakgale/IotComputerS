@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!--    Title    -->
+    <title> Computer Systems - ThinkSpeak IoT </title>
+    <link rel="shortcut icon" type="image/png" href="assets/img/logo.ico">
+</head>
+<body>
+
+    <main>
+
+        <!--1. Banner--> 
+        <section class="s-banner">
+            <div style="position:relative; width:100%; margin-top:40px;">
+                <img src="assets/img/banner.jpg" style="width:100%; height:448px;" />
+                <div style="position: absolute; width: 100%; top: 0px; left: 0px; height: 448px; color: white; background-image: linear-gradient(to right, rgba(34, 86, 123,1), rgba(0,0,0,0.3)); ">
+                    <div style="margin-top: 84px; margin-left: 15px; cursor: pointer; font-size: 18px; font-weight: 600;">
+                        Smart Sensor Dashboard 
+                    </div>
+                    <div style="margin-top: 28px; margin-left: 15px; cursor: pointer; font-size: 30px; font-weight: 800; ">
+                        Internet of Things <br />
+                        for Smart Devices
+                    </div>
+                    <div style="margin-top: 17px; margin-left: 15px; cursor: pointer; font-size: 17px; font-weight: 600; ">
+                        Understanding the working a smart device 
+                
+                    </div>
+                    <div style="margin-top: 34px; margin-left: 15px; cursor:pointer; font-size: 18px; font-weight: 600; padding: 12px; border-radius:8px; text-align:center; width: 190px; background-color: #EB4343; ">
+                        Meet the Team
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--1. About Us-->
+        <section>
+            <style>  
+                .abt {
+                    display: flex;
+                }
+
+                    .abt .b {
+                        margin: auto;
+                        width: 90%;
+                    }
+                .abt2 {
+                    display: flex;
+                    background-color: rgba(228, 237, 244,0.8);
+                }
+
+                    .abt2 .b {
+                        margin: auto;
+                        width: 90%;
+                    } 
+                    /*Web*/
+                @media not screen and (max-width: 900px) {
+                    .abt { 
+                        flex-direction : row-reverse;
+                    }
+                    .abt2 { 
+                        flex-direction : row;
+                    }
+                }
+                    /*Web*/
+                @media screen and (max-width: 900px) {
+                    .abt {
+                        flex-direction:column-reverse;
+                    }
+                    .abt2 {
+                        flex-direction:column-reverse;
+                    }
+                }
+            </style>
+            <div class="abt s-about-me">
+                <div style="flex:1; font-weight:500; font-size:15px;">
+                    <div class="b">
+                         short description 
+
+                    </div>
+                </div>
+                <div style="flex:1;">
+                    <div style="width:100%; min-height:280px; padding-top:5px; padding-bottom:10px;">
+                        <div style="width:90%; position:relative; margin:auto; margin-top:15px;">
+                            <img src="assets/img/abt.jpg" style="width:100%;" />
+                            <div style="position: absolute; height: 100%; top: 0px; left: 0px; background-image: linear-gradient(to right,rgba(30, 86, 128,0.8), rgba(30, 86, 128,0.5), rgba(30, 86, 128,0.3)); width: 100%; color: #717A7F; ">
+                                <div style="display: flex; margin-left:10%; margin-top:50px; font-size:30px; font-weight:900;">
+                                    <div style="width:30px; margin-left:5px; margin-right:5px; padding-top:12px;">
+                                        <hr style="border:none; border-bottom:solid white 5px;" />
+                                    </div>
+                                    <div style="color: white;">
+                                        About 
+                                    </div>
+                                </div>
+                                <div style="margin-left:12%; color:white; font-size:40px; font-weight:900;">
+                                    THE PROJECT ? 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--2. Live Graphs-->
+        <section>
+            <div>
+                <div style="display: flex; padding-top: 10px; border-top: solid #184E6F 2px;">
+                    <div style="color: #EB4343;">
+                        Live :
+                    </div>
+                    <div style="flex:1;"></div>
+                    <div>
+                        <button id="str" style="margin-right:15px;" onclick="start();"> Start </button>
+                    </div>
+                    <div>
+                        <button id="ref" style="margin-right:15px; display:none;" start="false" onclick="refresh()"> Refresh </button>
+                    </div>
+                    <div>
+                        <button id="stp" style="display:none;" onclick="stop();"> Stop </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="width: 300px; padding-top:8px; color: #1E5680; margin:auto; font-size: 30px; font-weight: 700;">
+                    Sensor Readings 
+                </div>
+                <div style="width: 90%; color: #717A7F; font-weight:500; font-size:17px; margin:auto; text-align: center;">
+                   short description
+                </div>
+                <div class="abt">
+                    <div style="flex:1; padding:5px;">
+                        <iframe width="450" height="260" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/2?results=720&dynamic=true&update=15"></iframe>
+                    </div>
+                    <div style="flex:1; padding:5px;">
+                        <iframe width="450" height="260" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/1?results=720&dynamic=true&update=15"></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!--3. About Us Tab-->
+        <section>
+            <div style="width: 100%; background-color: #E4EEF4; padding-top: 5px; padding-bottom: 5px; ">
+                <div style="width: 300px; padding-top:8px; color: #1E5680; margin:auto; font-size: 24px; font-weight: 700;">
+                    Member Details
+                </div>
+                <div style="width: 90%; color: #717A7F; font-weight:500; font-size:17px; margin:auto; text-align: center;">
+                    short description 
+                </div>
+
+                <div class="abt2">
+                    <div style="flex: 2;padding: 15px;  ">
+                        <div class="cn" style="border-radius:15px; display:flex; font-weight:600; min-height:132px; background-color:white; padding:30px; ">
+                            <div class="cntc"></div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 18px; color: #1E5680">
+                                    <span style="color: #EB4343"> Mr</span> Surname Initials 
+                                    <div style="width:40px; border:none; border-bottom:solid red 2px;"></div>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Surname : "surname" <br />
+                                    Names : <br />
+                                    <span class="fa fa-minus lv2"></span> "name1" <br />
+                                    <span class="fa fa-minus lv2"></span> "name2"
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Student No : "No"  
+                                </div> 
+                            </div>
+                            <div style="flex:1;"></div>
+                        </div>
+                    </div>
+                    <div style="flex:1; padding-right:10px;">
+                        <div style="width:300px; margin:auto; height: 180px; padding-top:15px; padding-bottom:15px; ">
+                            <img src="assets/img/abt.jpg" style="width: 300px; height: 180px; image-orientation: from-image; border: solid #1E5680 2px; border-radius: 15px; " />
+                        </div>
+                    </div>
+                </div>
+                <div class="abt">
+                    <div style="flex: 2;padding: 15px;  ">
+                        <div class="cn" style="border-radius:15px; display:flex; font-weight:600; min-height:132px; background-color:white; padding:30px; ">
+                            <div class="cntc"></div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 18px; color: #1E5680">
+                                    <span style="color: #EB4343"> Mr</span> Surname Initials 
+                                    <div style="width:40px; border:none; border-bottom:solid red 2px;"></div>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Surname : "surname" <br />
+                                    Names : <br />
+                                    <span class="fa fa-minus lv2"></span> "name1" <br />
+                                    <span class="fa fa-minus lv2"></span> "name2"
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Student No : "No"  
+                                </div> 
+                            </div>
+                            <div style="flex:1;"></div>
+                        </div>
+                    </div>
+                    <div style="flex:1; padding-right:10px;">
+                        <div style="width:300px; margin:auto; height: 180px; padding-top:15px; padding-bottom:15px; ">
+                            <img src="assets/img/abt.jpg" style="width: 300px; height: 180px; image-orientation: from-image; border: solid #1E5680 2px; border-radius: 15px; " />
+                        </div>
+                    </div>
+                </div>
+                <div class="abt2">
+                    <div style="flex: 2;padding: 15px;  ">
+                        <div class="cn" style="border-radius:15px; display:flex; font-weight:600; min-height:132px; background-color:white; padding:30px; ">
+                            <div class="cntc"></div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 18px; color: #1E5680">
+                                    <span style="color: #EB4343"> Mr</span> Surname Initials 
+                                    <div style="width:40px; border:none; border-bottom:solid red 2px;"></div>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Surname : "surname" <br />
+                                    Names : <br />
+                                    <span class="fa fa-minus lv2"></span> "name1" <br />
+                                    <span class="fa fa-minus lv2"></span> "name2"
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Student No : "No"  
+                                </div> 
+                            </div>
+                            <div style="flex:1;"></div>
+                        </div>
+                    </div>
+                    <div style="flex:1; padding-right:10px;">
+                        <div style="width:300px; margin:auto; height: 180px; padding-top:15px; padding-bottom:15px; ">
+                            <img src="assets/img/abt.jpg" style="width: 300px; height: 180px; image-orientation: from-image; border: solid #1E5680 2px; border-radius: 15px; " />
+                        </div>
+                    </div>
+                </div>
+                <div class="abt">
+                    <div style="flex: 2;padding: 15px;  ">
+                        <div class="cn" style="border-radius:15px; display:flex; font-weight:600; min-height:132px; background-color:white; padding:30px; ">
+                            <div class="cntc"></div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 18px; color: #1E5680">
+                                    <span style="color: #EB4343"> Mr</span> Surname Initials 
+                                    <div style="width:40px; border:none; border-bottom:solid red 2px;"></div>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Surname : "surname" <br />
+                                    Names : <br />
+                                    <span class="fa fa-minus lv2"></span> "name1" <br />
+                                    <span class="fa fa-minus lv2"></span> "name2"
+                                </div>
+                                <div style="padding-top:10px;">
+                                    Student No : "No"  
+                                </div> 
+                            </div>
+                            <div style="flex:1;"></div>
+                        </div>
+                    </div>
+                    <div style="flex:1; padding-right:10px;">
+                        <div style="width:300px; margin:auto; height: 180px; padding-top:15px; padding-bottom:15px; ">
+                            <img src="assets/img/abt.jpg" style="width: 300px; height: 180px; image-orientation: from-image; border: solid #1E5680 2px; border-radius: 15px; " />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+</body>
+</html>
