@@ -14,10 +14,28 @@
          function start()
                         {
                            alert("Going live");
-                           $("#stp").css("display" , block");
-                           $("#ref").css("display" , block");
+                           $("#stp").css("display" , "block");
+                           $("#ref").css("display" , "block");
                            state = true;
                         }
+        function refresh()
+                        {
+                            if(state)
+                            {
+                               var a = $("#ifr").html();
+                               $("#ifr").html(a);
+                            }
+                        }
+                        function stop()
+                        {
+                           $("#stp").css("display" , "block");
+                           $("#ref").css("display" , "block");
+                           state = false;
+                        }
+                        $(window).on("load" , function()
+                        {
+                            setInterval( function(){ refresh(); }, 5000);
+                        }) 
          alert("done loading 2");
     </script>
 </head>
