@@ -126,13 +126,14 @@
                             width: 150px; 
                             background-color: #EB4343;
                             color:white;
-                            border:solid rgba(34, 86, 123) 2px;
+                            border:solid darkblue 2px;
                         }
                     </style>
                     <script>
                         var state = false;
                         function start()
                         {
+                            alert("Going live");
                            $("#stp").css("display" , block");
                            $("#ref").css("display" , block");
                            state = true;
@@ -151,7 +152,7 @@
                         $(window).on("load" , function()
                         {
                             setInterval( function(){ refresh(); }, 5000);
-                        }); 
+                        }) 
                     </script>
                     <div style="flex:1;"></div>
                     <div>
