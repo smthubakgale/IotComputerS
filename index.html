@@ -92,6 +92,10 @@
                     .abt2 { 
                         flex-direction : row;
                     }
+                    .grp{
+                        width : 450px;
+                        height : 260px;
+                    }
                 }
                     /*Web*/
                 @media screen and (max-width: 1000px) {
@@ -100,6 +104,10 @@
                     }
                     .abt2 {
                         flex-direction:column-reverse;
+                    }
+                    .grp{
+                        width : 900px;
+                        height : 400px;
                     }
                 }
             </style>
@@ -180,10 +188,10 @@
                 </div>
                 <div class="abt" id="ifr" >
                     <div style="flex:1; padding:5px;">
-                        <iframe width="450" height="260" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/2?results=720&dynamic=true&update=15"></iframe>
+                        <iframe class="grp"  style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/2?results=720&dynamic=true&update=15"></iframe>
                     </div>
                     <div style="flex:1; padding:5px;">
-                        <iframe width="450" height="260" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/1?results=720&dynamic=true&update=15"></iframe>
+                        <iframe class="grp" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/1?results=720&dynamic=true&update=15"></iframe>
                     </div>
                 </div>
             </div>
