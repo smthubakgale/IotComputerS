@@ -11,26 +11,12 @@
     <script>
          alert("loading");
          var state = false;
-        function start()
+         function start()
                         {
-                            alert("Going live");
+                           alert("Going live");
                            $("#stp").css("display" , block");
                            $("#ref").css("display" , block");
                            state = true;
-                        }
-                        function refresh()
-                        {
-                            if(state)
-                            {
-                               var a = $("#ifr").html();
-                               $("#ifr").html(a);
-                            }
-                        }
-                        function stop()
-                        {
-                           $("#stp").css("display" , block");
-                           $("#ref").css("display" , block");
-                           state = false;
                         }
          alert("done loading 2");
     </script>
