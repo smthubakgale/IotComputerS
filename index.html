@@ -8,14 +8,14 @@
     <link rel="shortcut icon" type="image/png" href="assets/img/logo.ico" />
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-         alert("loading");
+    <script> 
          var state = false;
          function start()
                         {
                            alert("Going live");
                            $("#stp").css("display" , "block");
                            $("#ref").css("display" , "block");
+                           $("#str").css("display" , "none");
                            state = true;
                         }
         function refresh()
@@ -28,15 +28,15 @@
                         }
                         function stop()
                         {
-                           $("#stp").css("display" , "block");
-                           $("#ref").css("display" , "block");
+                           $("#stp").css("display" , "none");
+                           $("#ref").css("display" , "none"); 
+                           $("#str").css("display" , "block");
                            state = false;
                         }
                         $(window).on("load" , function()
                         {
                             setInterval( function(){ refresh(); }, 5000);
-                        }) 
-         alert("done loading 2");
+                        })  
     </script>
 </head>
 <body>
