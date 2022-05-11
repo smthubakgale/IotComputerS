@@ -140,8 +140,11 @@
                         }
                         function refresh()
                         {
-                           var a = $("#ifr").html();
-                            $("#ifr").html(a);
+                            if(state)
+                            {
+                               var a = $("#ifr").html();
+                               $("#ifr").html(a);
+                            }
                         }
                         function stop()
                         {
