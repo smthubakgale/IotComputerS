@@ -7,6 +7,33 @@
     <title> Computer Systems - ThinkSpeak IoT </title>
     <link rel="shortcut icon" type="image/png" href="assets/img/logo.ico" />
     <script>
+         alert("loaded");
+                        var state = false;
+                        function start()
+                        {
+                            alert("Going live");
+                           $("#stp").css("display" , block");
+                           $("#ref").css("display" , block");
+                           state = true;
+                        }
+                        function refresh()
+                        {
+                            if(state)
+                            {
+                               var a = $("#ifr").html();
+                               $("#ifr").html(a);
+                            }
+                        }
+                        function stop()
+                        {
+                           $("#stp").css("display" , block");
+                           $("#ref").css("display" , block");
+                           state = false;
+                        }
+                        $(window).on("load" , function()
+                        {
+                            setInterval( function(){ refresh(); }, 5000);
+                        }) 
         alert("loading");
     </script>
     <script src="assets/jquery-3.6.0.min.js"></script>
@@ -132,35 +159,6 @@
                             border:solid darkblue 2px;
                         }
                     </style>
-                    <script>
-                         alert("loaded");
-                        var state = false;
-                        function start()
-                        {
-                            alert("Going live");
-                           $("#stp").css("display" , block");
-                           $("#ref").css("display" , block");
-                           state = true;
-                        }
-                        function refresh()
-                        {
-                            if(state)
-                            {
-                               var a = $("#ifr").html();
-                               $("#ifr").html(a);
-                            }
-                        }
-                        function stop()
-                        {
-                           $("#stp").css("display" , block");
-                           $("#ref").css("display" , block");
-                           state = false;
-                        }
-                        $(window).on("load" , function()
-                        {
-                            setInterval( function(){ refresh(); }, 5000);
-                        }) 
-                    </script>
                     <div style="flex:1;"></div>
                     <div>
                         <button class="btn" id="str" style="margin-right:15px;" onclick="start();"> Start </button>
