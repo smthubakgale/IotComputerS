@@ -6,6 +6,7 @@
     <!--    Title    -->
     <title> Computer Systems - ThinkSpeak IoT </title>
     <link rel="shortcut icon" type="image/png" href="assets/img/logo.ico">
+    <script src="assets/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -114,15 +115,27 @@
                     <div style="color: #EB4343;">
                         Live :
                     </div>
+                    <style>
+                        .btn{
+                           cursor:pointer; 
+                            font-size: 18px; 
+                            font-weight: 600; 
+                            padding: 12px; 
+                            border-radius:8px; 
+                            text-align:center; 
+                            width: 190px; 
+                            background-color: #EB4343;
+                        }
+                    </style>
                     <div style="flex:1;"></div>
                     <div>
-                        <button id="str" style="margin-right:15px;" onclick="start();"> Start </button>
+                        <button class="btn" id="str" style="margin-right:15px;" onclick="start();"> Start </button>
                     </div>
                     <div>
-                        <button id="ref" style="margin-right:15px; display:none;" start="false" onclick="refresh()"> Refresh </button>
+                        <button class="btn" id="ref" style="margin-right:15px; display:none;" start="false" onclick="refresh()"> Refresh </button>
                     </div>
                     <div>
-                        <button id="stp" style="display:none;" onclick="stop();"> Stop </button>
+                        <button class="btn" id="stp" style="display:none;" onclick="stop();"> Stop </button>
                     </div>
                 </div>
             </div>
