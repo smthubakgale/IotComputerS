@@ -6,37 +6,13 @@
     <!--    Title    -->
     <title> Computer Systems - ThinkSpeak IoT </title>
     <link rel="shortcut icon" type="image/png" href="assets/img/logo.ico" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-         alert("loaded");
-                        var state = false;
-                        function start()
-                        {
-                            alert("Going live");
-                           $("#stp").css("display" , block");
-                           $("#ref").css("display" , block");
-                           state = true;
-                        }
-                        function refresh()
-                        {
-                            if(state)
-                            {
-                               var a = $("#ifr").html();
-                               $("#ifr").html(a);
-                            }
-                        }
-                        function stop()
-                        {
-                           $("#stp").css("display" , block");
-                           $("#ref").css("display" , block");
-                           state = false;
-                        }
-                        $(window).on("load" , function()
-                        {
-                            setInterval( function(){ refresh(); }, 5000);
-                        }) 
-        alert("loading");
+         alert("loading");
+         ar state = false;
+         alert("done loading");
     </script>
-    <script src="assets/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
