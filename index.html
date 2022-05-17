@@ -6,57 +6,72 @@
     <!--    Title    -->
     <title> Computer Systems - ThinkSpeak IoT </title>
     <link rel="shortcut icon" type="image/png" href="assets/img/logo.ico" />
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script> 
-         var state = false;
-         function start()
-                        { 
-                           $("#stp").css("display" , "block");
-                           $("#ref").css("display" , "block");
-                           $("#str").css("display" , "none");
-                           state = true;
-                        }
-        function refresh()
-                        {
-                            if(state)
-                            {
-                               var a = $("#ifr").html();
-                               $("#ifr").html(a);
-                            }
-                        }
-                        function stop()
-                        {
-                           $("#stp").css("display" , "none");
-                           $("#ref").css("display" , "none"); 
-                           $("#str").css("display" , "block");
-                           state = false;
-                        }
-                        $(window).on("load" , function()
-                        {
-                            setInterval( function(){ refresh(); }, 10000);
-                        })  
-    </script>
-</head>
-<body>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        var state = false;
+        function start() {
+            $("#stp").css("display", "block");
+            $("#ref").css("display", "block");
+            $("#str").css("display", "none");
+            state = true;
+        }
+        function refresh() {
+            if (state) {
+                var a = $("#ifr").html();
+                $("#ifr").html(a);
+            }
+        }
+        function stop() {
+            $("#stp").css("display", "none");
+            $("#ref").css("display", "none");
+            $("#str").css("display", "block");
+            state = false;
+        }
+        $(window).on("load", function () {
+            setInterval(function () { refresh(); }, 10000);
+        })
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+</head>
+<body oncontextmenu="return false">
+    <script>
+        document.onkeydown = function (e) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        }
+    </script>
     <main>
 
-        <!--1. Banner--> 
+        <!--1. Banner-->
         <section class="s-banner">
             <div style="position:relative; width:100%; margin-top:40px;">
                 <img src="assets/img/banner.jpg" style="width:100%; height:448px;" />
                 <div style="position: absolute; width: 100%; top: 0px; left: 0px; height: 448px; color: white; background-image: linear-gradient(to right, rgba(34, 86, 123,1), rgba(0,0,0,0.3)); ">
                     <div style="margin-top: 84px; margin-left: 15px; cursor: pointer; font-size: 18px; font-weight: 600;">
-                        Smart Sensor Dashboard 
+                        Smart Sensor Dashboard
                     </div>
                     <div style="margin-top: 28px; margin-left: 15px; cursor: pointer; font-size: 30px; font-weight: 800; ">
                         Internet of Things <br />
                         for Smart Devices
                     </div>
                     <div style="margin-top: 17px; margin-left: 15px; cursor: pointer; font-size: 17px; font-weight: 600; ">
-                        Understanding the working a smart device 
-                
+                        Understanding the working a smart device
+
                     </div>
                     <div style="margin-top: 34px; margin-left: 15px; cursor:pointer; font-size: 18px; font-weight: 600; padding: 12px; border-radius:8px; text-align:center; width: 190px; background-color: #EB4343; ">
                         Meet the Team
@@ -66,7 +81,7 @@
         </section>
         <!--1. About Us-->
         <section>
-            <style>  
+            <style>
                 .abt {
                     display: flex;
                 }
@@ -75,6 +90,7 @@
                         margin: auto;
                         width: 90%;
                     }
+
                 .abt2 {
                     display: flex;
                     background-color: rgba(228, 237, 244,0.8);
@@ -83,40 +99,44 @@
                     .abt2 .b {
                         margin: auto;
                         width: 90%;
-                    } 
-                    /*Web*/
+                    }
+                /*Web*/
                 @media not screen and (max-width: 1000px) {
-                    .abt { 
-                        flex-direction : row-reverse;
+                    .abt {
+                        flex-direction: row-reverse;
                     }
-                    .abt2 { 
-                        flex-direction : row;
+
+                    .abt2 {
+                        flex-direction: row;
                     }
-                    .grp{
-                        width : 100%;
-                        height : 260px;
+
+                    .grp {
+                        width: 100%;
+                        height: 260px;
                     }
                 }
-                    /*Web*/
+                /*Web*/
                 @media screen and (max-width: 1000px) {
                     .abt {
-                        flex-direction:column-reverse;
+                        flex-direction: column-reverse;
                     }
+
                     .abt2 {
-                        flex-direction:column-reverse;
+                        flex-direction: column-reverse;
                     }
-                    .grp{
-                        width : 100%;
-                        height : 500px;
+
+                    .grp {
+                        width: 100%;
+                        height: 500px;
                     }
                 }
             </style>
             <div class="abt s-about-me">
                 <div style="flex:1; font-weight:500; font-size:15px;">
                     <div class="b" style="padding-top:15px;  font-size:16px;">
-                         We are creating a website that can read and display the data of at least one smart
-                         environmental sensor.<br>
-                        This is done so that it can be able to read/obtain the data from the online smart sensor and show 
+                        We are creating a website that can read and display the data of at least one smart
+                        environmental sensor.<br>
+                        This is done so that it can be able to read/obtain the data from the online smart sensor and show
                         the data live in graphs on our website (not Thingspeak).<br>
                         For this practical we must be able to collect the live data and create graphs with the live data from the smart sensor.
                         The user shall be able to see live information of the smart device on the website.
@@ -133,11 +153,11 @@
                                         <hr style="border:none; border-bottom:solid white 5px;" />
                                     </div>
                                     <div style="color: white;">
-                                        About 
+                                        About
                                     </div>
                                 </div>
                                 <div style="margin-left:12%; color:white; font-size:40px; font-weight:900;">
-                                    PRACTICAL 1 
+                                    PRACTICAL 1
                                 </div>
                             </div>
                         </div>
@@ -154,17 +174,17 @@
                         Live :
                     </div>
                     <style>
-                        .btn{
-                           cursor:pointer; 
-                            font-size: 18px; 
-                            font-weight: 600; 
-                            padding: 8px; 
-                            border-radius:8px; 
-                            text-align:center; 
-                            width: 150px; 
+                        .btn {
+                            cursor: pointer;
+                            font-size: 18px;
+                            font-weight: 600;
+                            padding: 8px;
+                            border-radius: 8px;
+                            text-align: center;
+                            width: 150px;
                             background-color: #EB4343;
-                            color:white;
-                            border:solid darkblue 2px;
+                            color: white;
+                            border: solid darkblue 2px;
                         }
                     </style>
                     <div style="flex:1;"></div>
@@ -180,32 +200,64 @@
                 </div>
             </div>
             <div>
-                <div style="width: 300px; padding-top:8px; color: #1E5680; margin:auto; font-size: 30px; font-weight: 700;">
-                    Sensor Readings 
+                <div style="width: 100%; text-align:center; padding-top:8px; color: #1E5680; margin:auto; font-size: 30px; font-weight: 700;">
+                    <span id="snsttl">Sensor 1</span> Readings
                 </div>
                 <div style="width: 90%; color: #717A7F; font-weight:500; font-size:17px; margin:auto; text-align: center;">
-                   
+
                 </div>
-                <div class="abt" id="ifr" >
+                <div class="abt" id="ifr">
                     <div style="flex:1; padding:5px;">
-                        <iframe class="grp"  style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/2?results=720&dynamic=true&update=15"></iframe>
+                        <iframe class="grp grp1" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/2?results=720&dynamic=true&update=15"></iframe>
                     </div>
                     <div style="flex:1; padding:5px;">
-                        <iframe class="grp" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/1?results=720&dynamic=true&update=15"></iframe>
+                        <iframe class="grp grp2" style="border: 1px solid #cccccc; margin:auto;" src="https://api.thingspeak.com/channels/1708546/charts/1?results=720&dynamic=true&update=15"></iframe>
                     </div>
                 </div>
             </div>
 
         </section>
 
-        <!--3. About Us Tab-->
+        <!--3. Map Sensors -->
+        <section>
+            <div style="padding-top: 10px; padding-bottom:30px; border-top: solid #FF0000 2px;">
+                <div style="width: 300px; padding-top: 8px; padding-bottom:16px; color: #FF0000; margin: auto; font-size: 30px; font-weight: 700;">
+                    Map Sensors
+                </div>
+                <style>
+
+                    #map {
+                        width: 90%;
+                        margin: auto; 
+                    }
+                    /*Web*/
+                    @media not screen and (max-width: 1000px) {
+                        #map {
+                            height: 80vh; 
+                        }
+                    }
+                    /* Mobile */
+                    @media screen and (max-width: 1000px) {
+                        #map {
+                            height: 400px;
+                        }
+                    }
+                </style>
+                <div id="map" >
+
+                </div>
+            </div>
+
+        </section>
+
+        <!--4. About Us Tab-->
         <section>
             <div style="width: 100%; background-color: #E4EEF4; padding-top: 5px; padding-bottom: 5px; ">
                 <div style="width: 300px; padding-top:8px; color: #1E5680; margin:auto; font-size: 24px; font-weight: 700;">
                     Member Details
                 </div>
                 <div style="width: 90%; color: #717A7F; font-weight:500; font-size:17px; margin:auto; text-align: center;">
-                    
+
                 </div>
 
                 <div class="abt2">
@@ -224,8 +276,8 @@
                                     <span class="fa fa-minus lv2"></span> Thokozani
                                 </div>
                                 <div style="padding-top:10px;">
-                                    Student No : 218016979 
-                                </div> 
+                                    Student No : 218016979
+                                </div>
                             </div>
                             <div style="flex:1;"></div>
                         </div>
@@ -242,7 +294,7 @@
                             <div class="cntc"></div>
                             <div>
                                 <div style="font-weight: 700; font-size: 18px; color: #1E5680">
-                                    <span style="color: #EB4343"> Mr</span> Mahlare CK 
+                                    <span style="color: #EB4343"> Mr</span> Mahlare CK
                                     <div style="width:40px; border:none; border-bottom:solid red 2px;"></div>
                                 </div>
                                 <div style="padding-top:10px;">
@@ -252,8 +304,8 @@
                                     <span class="fa fa-minus lv2"></span> Crossborn
                                 </div>
                                 <div style="padding-top:10px;">
-                                    Student No : 216008649  
-                                </div> 
+                                    Student No : 216008649
+                                </div>
                             </div>
                             <div style="flex:1;"></div>
                         </div>
@@ -276,11 +328,11 @@
                                 <div style="padding-top:10px;">
                                     Surname : NTAI <br />
                                     Names : <br />
-                                    <span class="fa fa-minus lv2"></span> LERATO  
+                                    <span class="fa fa-minus lv2"></span> LERATO
                                 </div>
                                 <div style="padding-top:10px;">
                                     Student No : 217070233
-                                </div> 
+                                </div>
                             </div>
                             <div style="flex:1;"></div>
                         </div>
@@ -297,7 +349,7 @@
                             <div class="cntc"></div>
                             <div>
                                 <div style="font-weight: 700; font-size: 18px; color: #1E5680">
-                                    <span style="color: #EB4343"> Mr</span> Mbatha L 
+                                    <span style="color: #EB4343"> Mr</span> Mbatha L
                                     <div style="width:40px; border:none; border-bottom:solid red 2px;"></div>
                                 </div>
                                 <div style="padding-top:10px;">
@@ -306,8 +358,8 @@
                                     <span class="fa fa-minus lv2"></span> Lindani
                                 </div>
                                 <div style="padding-top:10px;">
-                                    Student No : 218077768  
-                                </div> 
+                                    Student No : 218077768
+                                </div>
                             </div>
                             <div style="flex:1;"></div>
                         </div>
@@ -323,6 +375,79 @@
 
     </main>
 
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+ 
+    <script>  
+     // Create Map
+        const map = L.map('map', {
+            center: [-30.5595, 22.9375], // replace [-30.5595, 22.9375] with  [-26.210555555556 , 27.788888888889]
+            zoom: 12
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+        // Add Marker 
+        $(window).on("load", function ()
+        {
+            var urls = ["https://api.thingspeak.com/channels/1708546/fields/1.json?results=2", "https://api.thingspeak.com/channels/1737929/fields/1.json?results=2",
+                "https://api.thingspeak.com/channels/1738066/fields/1.json?results=2", "https://api.thingspeak.com/channels/1738082/fields/1.json?results=2"];
+
+            var pos = [[-30.5225, 22.9375], [-30.5595, 22.985], [-30.599, 22.985], [-30.599, 22.9375]];
+
+            $.each(urls, (k, item) => {
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url: item,
+                    contentType: "application/json;",
+                    success: function (resp)
+                    {
+                        var id = resp.channel.id;
+                        var name = resp.channel.name;
+                        var lat = parseInt(resp.channel.latitude);
+                        var lon = parseInt(resp.channel.longitude);
+                        // Add Marker
+
+                        L.marker( pos[k] , {  // replace pos[k] with [lat , lon]
+                            icon: new L.DivIcon({
+                                className: 'my-div-icon',
+                                html: '<div style="cursor:pointer;" name="sensor1" onclick="loadSensor(this)" >'
+                                    + '<img style="width:30px; height:30px; " src="assets/img/sensor.svg"/>' +
+                                    '<div class="sns" style="color:red; font-size:10px; font-weight:bold;" > '+name+'</div>'
+                                    + '<div class="temp" style="display:none"> https://api.thingspeak.com/channels/'+ id +'/charts/2?results=720&dynamic=true&update=15 </div>'
+                                    + '<div class="humd" style="display:none"> https://api.thingspeak.com/channels/' + id +'/charts/1?results=720&dynamic=true&update=15 </div>'
+                                    + '</div>'
+                            })
+                        }).addTo(map);
+                        // ---------- 
+                    },
+                    error: function (response) {
+                        alert("error");
+                    }
+                });
+            })
+
+        })
+        //
+    </script>
+    <script>
+        function loadSensor(tag)
+        {
+            var temp = $(tag).find(".temp").html();
+            var humd= $(tag).find(".humd").html();
+            var sns= $(tag).find(".sns").html(); 
+
+            $("#snsttl").html(sns);
+            $("#ifr").find(".grp1").attr("src", temp);
+            $("#ifr").find(".grp2").attr("src", humd);
+
+            var h = $("#ifr").html();
+            $("#ifr").html(h);
+
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#snsttl").offset().top - 20
+            }, 250);
+        }
+    </script>
 
 </body>
 </html>
