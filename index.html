@@ -224,21 +224,107 @@
                 <div style="width: 300px; padding-top: 8px; padding-bottom:16px; color: #FF0000; margin: auto; font-size: 30px; font-weight: 700;">
                     Map Sensors
                 </div>
+                <div class="mpc" style="overflow-x:scroll">
+                    <div class="mps" style="border: solid #FF0000 1px; margin-bottom: 20px; background: url(assets/img/map.jpeg) no-repeat ; background-size: cover; ">
+
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function ()
+                    {
+                        var cont = false; 
+                        $('.mps').mousemove(function (event)
+                        {
+                            cont = true;
+
+                        }).mouseleave(function (event)
+                        {
+                            cont = false;
+
+                        }).mousedown(function (event)
+                        {
+                            if (cont)
+                            {
+                                var x = 100 * (event.pageX - $(this).offset().left) / $(this).outerWidth();
+                                var y = 100 * (event.pageY - $(this).offset().top) / $(this).outerWidth();
+
+                                var s = [[21.23, 28.68], [32.47, 20.91], [54.96, 34.04], [82.33, 25.31]];
+                                var sn = 1;
+
+                                $.each(s, (k, item) =>
+                                {
+                                    var x_min = item[0] - 1;
+                                    var x_max = item[0] + 1;
+
+                                    var y_min = item[1] - 1;
+                                    var y_max = item[1] + 1;
+                                     
+                                    if (x_min < x && x < x_max && y_min < y && y < y_max) {
+                                        sn = k + 1;
+                                        cnt = false;
+                                    }
+                                })
+
+
+                                var urls = ["https://api.thingspeak.com/channels/1708546/fields/1.json?results=2", "https://api.thingspeak.com/channels/1737929/fields/1.json?results=2",
+                                    "https://api.thingspeak.com/channels/1738066/fields/1.json?results=2", "https://api.thingspeak.com/channels/1738082/fields/1.json?results=2"];
+
+                                var item = urls[sn - 1];
+                                $.ajax({
+                                    async: false,
+                                    type: "GET",
+                                    url: item,
+                                    contentType: "application/json;",
+                                    success: function (resp)
+                                    {
+                                        var id = resp.channel.id;
+                                        var name = resp.channel.name; 
+                                        // Load Graphs
+
+                                        var tmp = 'https://api.thingspeak.com/channels/' + id + '/charts/2?results=720&dynamic=true&update=15'
+                                        var hmd = 'https://api.thingspeak.com/channels/' + id + '/charts/1?results=720&dynamic=true&update=15'
+
+                                        $("#snsttl").html(name);
+                                        $("#ifr").find(".grp1").attr("src", tmp);
+                                        $("#ifr").find(".grp2").attr("src", hmd);
+
+                                        var h = $("#ifr").html();
+                                        $("#ifr").html(h);
+
+                                        $([document.documentElement, document.body]).animate({
+                                            scrollTop: $("#snsttl").offset().top - 20
+                                        }, 250);
+                                        // ---------- 
+                                    },
+                                    error: function (response)
+                                    {
+                                        alert("error");
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
                 <style>
 
-                    #map {
+                    .mpc , #map {
                         width: 90%;
                         margin: auto; 
                     }
+                    .mps{
+                        height:400px;
+                        width:800px;
+                        margin:auto;
+                    }
                     /*Web*/
                     @media not screen and (max-width: 1000px) {
-                        #map {
-                            height: 80vh; 
+                        .mpc, #map {
+                            height: 80vh;
                         }
                     }
                     /* Mobile */
                     @media screen and (max-width: 1000px) {
-                        #map {
+                        .mpc, #map {
                             height: 400px;
                         }
                     }
@@ -380,8 +466,8 @@
     <script>  
      // Create Map
         const map = L.map('map', {
-            center: [-30.5595, 22.9375], // replace [-30.5595, 22.9375] with  [-26.210555555556 , 27.788888888889]
-            zoom: 12
+            center: [-26.1936538398, 28.056508994 ], // replace [-30.5595, 22.9375] with  [-26.210555555556 , 27.788888888889]
+            zoom: 16
         });
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
@@ -391,7 +477,7 @@
             var urls = ["https://api.thingspeak.com/channels/1708546/fields/1.json?results=2", "https://api.thingspeak.com/channels/1737929/fields/1.json?results=2",
                 "https://api.thingspeak.com/channels/1738066/fields/1.json?results=2", "https://api.thingspeak.com/channels/1738082/fields/1.json?results=2"];
 
-            var pos = [[-30.5225, 22.9375], [-30.5595, 22.985], [-30.599, 22.985], [-30.599, 22.9375]];
+            var pos = [[-26.1919538398, 28.056508994], [-26.194853898, 28.056508994], [-26.194853898, 28.054508994], [-26.193053898, 28.05508994]];
 
             $.each(urls, (k, item) => {
                 $.ajax({
