@@ -6,6 +6,10 @@
     <!--    Title    -->
     <title> Computer Systems - ThinkSpeak IoT </title>
     <link rel="shortcut icon" type="image/png" href="assets/img/logo.ico" />
+    <!-- Icons & Fonts -->
+    <link rel="stylesheet" href="assets/fonts/f_custom.css">
+    <link rel="stylesheet" href="assets/icons/i_font-awesome.css">
+    <link rel="stylesheet" href="assets/icons/i_custom.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -218,47 +222,131 @@
 
         </section>
 
-        <!--3. Map Sensors -->
+        <!-- 3. Users -->
         <section>
-            <div style="padding-top: 10px; padding-bottom:30px; border-top: solid #FF0000 2px;">
+            <div style="text-align: center; width:100%; padding-top:20px; padding-bottom:20px; ">
+                <div style="padding: 10px; padding-bottom:15px; color: #1E5680; font-weight: 900; font-size: 20px; border-top: solid #FF0000 2px;">
+                    User Notifications
+                </div>
+                <div style="width: 90%; margin: auto; display: flex;">
+                    <div style="flex:2;">
+                        <div style="padding: 10px; font-weight: bold; font-size: 18px; text-align: left; color: #808080;">
+                            Email Subscriptions
+                        </div>
+                        <div style="display:flex; width:80%; margin:auto;">
+                            <div style="flex:1;">
+                                <input placeholder="Enter Email to Subscribe" type="text" style="outline: none; width:90%; text-align:center; border: solid #184E6F 1.5px; border-radius:10px; padding:5px;" />
+                            </div>
+                            <div style="padding-left: 5px; padding-right: 5px; color: #184E6F; cursor:pointer; font-size:19px; padding-top:5px;">
+                                <span class="fa fa-plus-circle"></span>
+                            </div>
+                        </div>
+                        <div style="min-height: 50vh; max-height: 60vh; width: 90%; padding: 10px; margin: auto; margin-top: 10px; border-left: solid gray 2px; border-top: solid gray 2px; border-top-left-radius: 10px;">
+                            <div style="display: flex; border-bottom: solid #808080 1px; ">
+                                <div style="padding:5px; flex:1;">
+                                    mahlare@gmail.com 
+                                </div>
+                                <div style="padding-left: 5px; padding-right: 5px; color: red; cursor:pointer; font-size:19px; padding-top:5px;">
+                                    <span class="fa fa-trash"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width:20px;"></div>
+                    <div style="min-height:60vh; max-height:70vh;  flex: 4; background-color: #23567B; color: white; padding: 10px; border-top-right-radius: 15px;border-top-left-radius: 15px; border-top: solid #184E6F 2px; border-left: solid #184E6F 2px; ">
+                        <div style="display: flex; border-bottom: solid #808080 1px; padding-bottom: 10px; ">
+                            <div style="padding-left:10px;">
+                               <span><b>mahlare@gmail.com</b></span>
+                            </div> 
+                            <div style="flex:1;">
+                                <span> <span> Sensor 1 </span> <span> temperature </span> <span>34.5 *C </span></span>
+                            </div>
+                            <div style="padding-right:10px;">
+                                <span> 14:40 5/29/2022 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex:1; font-weight:bold;">
+                        <div style="color: #184E6F; padding:5px;">
+                            Sensor 1
+                        </div>
+                        <div style="color: #808080;">
+                            Temperature
+                        </div>
+                        <div style="color: #184E6F; padding:5px;">
+                             35*C 
+                        </div>
+                        <div style="color: #808080;">
+                             15:30 29/05/20222 
+                        </div>
+                    </div>
+                </div>
+                 <script>
+                     $(window).on("load", function ()
+                     {
+                         notifyMe("Mahlare");
+                     })
+                     function notifyMe(str)
+                     {
+                         if (!("Notification" in window)) {
+                             alert("This browser does not support desktop notification");
+                         } 
+                         else if (Notification.permission === "granted")
+                         {
+                             var notification = new Notification(str);
+                         }   
+                         else if (Notification.permission !== "denied")
+                         {
+                             Notification.requestPermission().then(function (permission)
+                             { 
+                                 if (permission === "granted") {
+                                     var notification = new Notification(str);
+                                 }
+                             });
+                         }
+
+                         // At last, if the user has denied notifications, and you 
+                         // want to be respectful there is no need to bother them any more.
+                     }
+                 </script>
+            </div>
+        </section>
+
+        <!--4. Map Sensors -->
+        <section>
+            <div style="padding-top: 10px; padding-bottom: 30px; border-top: solid #184E6F 2px;">
                 <div style="width: 300px; padding-top: 8px; padding-bottom:16px; color: #FF0000; margin: auto; font-size: 30px; font-weight: 700;">
                     Map Sensors
                 </div>
-                <div class="mpc" style="overflow-x:scroll">
-                    <div class="mps" style="border: solid #FF0000 1px; margin-bottom: 20px; background: url(assets/img/map.jpeg) no-repeat ; background-size: cover; ">
+                <div class="mpc" style="overflow-x: scroll;">
+                    <div class="mps" style=" border: solid #FF0000 1px; margin-bottom: 20px; background: url(assets/img/map.jpeg) no-repeat ; background-size: cover; ">
 
                     </div>
                 </div>
                 <script>
-                    $(document).ready(function ()
-                    {
-                        var cont = false; 
-                        $('.mps').mousemove(function (event)
-                        {
+                    $(document).ready(function () {
+                        var cont = false;
+                        $('.mps').mousemove(function (event) {
                             cont = true;
 
-                        }).mouseleave(function (event)
-                        {
+                        }).mouseleave(function (event) {
                             cont = false;
 
-                        }).mousedown(function (event)
-                        {
-                            if (cont)
-                            {
+                        }).mousedown(function (event) {
+                            if (cont) {
                                 var x = 100 * (event.pageX - $(this).offset().left) / $(this).outerWidth();
                                 var y = 100 * (event.pageY - $(this).offset().top) / $(this).outerWidth();
 
                                 var s = [[21.23, 28.68], [32.47, 20.91], [54.96, 34.04], [82.33, 25.31]];
                                 var sn = 1;
 
-                                $.each(s, (k, item) =>
-                                {
+                                $.each(s, (k, item) => {
                                     var x_min = item[0] - 1;
                                     var x_max = item[0] + 1;
 
                                     var y_min = item[1] - 1;
                                     var y_max = item[1] + 1;
-                                     
+
                                     if (x_min < x && x < x_max && y_min < y && y < y_max) {
                                         sn = k + 1;
                                         cnt = false;
@@ -275,10 +363,9 @@
                                     type: "GET",
                                     url: item,
                                     contentType: "application/json;",
-                                    success: function (resp)
-                                    {
+                                    success: function (resp) {
                                         var id = resp.channel.id;
-                                        var name = resp.channel.name; 
+                                        var name = resp.channel.name;
                                         // Load Graphs
 
                                         var tmp = 'https://api.thingspeak.com/channels/' + id + '/charts/2?results=720&dynamic=true&update=15'
@@ -294,10 +381,9 @@
                                         $([document.documentElement, document.body]).animate({
                                             scrollTop: $("#snsttl").offset().top - 20
                                         }, 250);
-                                        // ---------- 
+                                        // ----------
                                     },
-                                    error: function (response)
-                                    {
+                                    error: function (response) {
                                         alert("error");
                                     }
                                 });
@@ -307,14 +393,15 @@
                 </script>
                 <style>
 
-                    .mpc , #map {
+                    .mpc, #map {
                         width: 90%;
-                        margin: auto; 
+                        margin: auto;
                     }
-                    .mps{
-                        height:400px;
-                        width:800px;
-                        margin:auto;
+
+                    .mps {
+                        height: 400px;
+                        width: 800px;
+                        margin: auto;
                     }
                     /*Web*/
                     @media not screen and (max-width: 1000px) {
@@ -329,14 +416,16 @@
                         }
                     }
                 </style>
-                <div id="map" >
+
+                <hr style="border: none; border-top: solid #FF0000 2px; margin-top: 20px; margin-bottom: 20px;" />
+                <div id="map">
 
                 </div>
             </div>
 
         </section>
 
-        <!--4. About Us Tab-->
+        <!--5. About Us Tab-->
         <section>
             <div style="width: 100%; background-color: #E4EEF4; padding-top: 5px; padding-bottom: 5px; ">
                 <div style="width: 300px; padding-top:8px; color: #1E5680; margin:auto; font-size: 24px; font-weight: 700;">
