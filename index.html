@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/icons/i_custom.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
         var state = false;
         function start() {
@@ -224,6 +224,67 @@
 
         <!-- 3. Users -->
         <section>
+            <script> 
+                $(window).on("load", function () {
+                    setInterval(function () {
+                        thresholds()
+                    }, 8000)
+                });
+                function thresholds() {
+
+                    var sen = ["Sensor 2", "Sensor3", "Sensor 4"];
+                    var tp = ["temperature", "humidity"];
+
+                    var thres = [
+                        [$("#s2_t").val(), $("#s2_h").val()],
+                        [$("#s3_t").val(), $("#s3_h").val()],
+                        [$("#s4_t").val(), $("#s4_h").val()]
+                    ];
+
+                    var urlsA = [
+                        ["https://api.thingspeak.com/update?api_key=VXCEWEVQJ3D71HJ9&field1=", "https://api.thingspeak.com/update?api_key=VXCEWEVQJ3D71HJ9&field2="],
+                        ["https://api.thingspeak.com/update?api_key=ZTM68ENLVH19HYNM&field1=", "https://api.thingspeak.com/update?api_key=ZTM68ENLVH19HYNM&field2="],
+                        ["https://api.thingspeak.com/update?api_key=VBBMSWC6IOVYHBMI&field1=", "https://api.thingspeak.com/update?api_key=VBBMSWC6IOVYHBMI&field2="]
+                    ];
+
+                    var g = $(".notifs").children().first();
+                    var str = "";
+
+                    for (var k = 0; k < 3; k++) {
+                        for (var i = 0; i < 2; i++) {
+
+                            var item = urlsA[k][i] + thres[k][i];
+
+                            $.ajax({
+                                async: false,
+                                type: "GET",
+                                url: item,
+                                contentType: "application/json;",
+                                success: function (resp) {
+                                    var val = parseInt(resp + "");
+                                    var thr = parseInt(thres[k][i] + "");
+
+                                    if (val > thr) {
+                                        var d = val - thr;
+                                        var s = sen[k] + " " + tp[i] + " is over the threshold at " + val + " by " + d;
+                                        var f = g.clone();
+                                        f.find(".a").html(s);
+                                        str += $("<div/>").html(f).html();
+                                    }
+                                },
+                                error: function (response) {
+                                    //alert("error");
+                                }
+                            });
+                        }
+                    }
+
+                    $(".notifs").html(str);
+
+                    notifyMe(str);
+                }
+            </script>
+
             <div style="text-align: center; width:100%; padding-top:20px; padding-bottom:20px; ">
                 <div style="padding: 10px; padding-bottom:15px; color: #1E5680; font-weight: 900; font-size: 20px; border-top: solid #FF0000 2px;">
                     User Notifications
@@ -244,7 +305,7 @@
                         <div style="min-height: 50vh; max-height: 60vh; width: 90%; padding: 10px; margin: auto; margin-top: 10px; border-left: solid gray 2px; border-top: solid gray 2px; border-top-left-radius: 10px;">
                             <div style="display: flex; border-bottom: solid #808080 1px; ">
                                 <div style="padding:5px; flex:1;">
-                                    mahlare@gmail.com 
+                                    mahlare@gmail.com
                                 </div>
                                 <div style="padding-left: 5px; padding-right: 5px; color: red; cursor:pointer; font-size:19px; padding-top:5px;">
                                     <span class="fa fa-trash"></span>
@@ -253,62 +314,73 @@
                         </div>
                     </div>
                     <div style="width:20px;"></div>
-                    <div style="min-height:60vh; max-height:70vh;  flex: 4; background-color: #23567B; color: white; padding: 10px; border-top-right-radius: 15px;border-top-left-radius: 15px; border-top: solid #184E6F 2px; border-left: solid #184E6F 2px; ">
+                    <div class="notifs" style="min-height:60vh; max-height:70vh;  flex: 4; background-color: #23567B; color: white; padding: 10px; border-top-right-radius: 15px;border-top-left-radius: 15px; border-top: solid #184E6F 2px; border-left: solid #184E6F 2px; ">
                         <div style="display: flex; border-bottom: solid #808080 1px; padding-bottom: 10px; ">
-                            <div style="padding-left:10px;">
-                               <span><b>mahlare@gmail.com</b></span>
-                            </div> 
-                            <div style="flex:1;">
-                                <span> <span> Sensor 1 </span> <span> temperature </span> <span>34.5 *C </span></span>
-                            </div>
-                            <div style="padding-right:10px;">
-                                <span> 14:40 5/29/2022 </span>
+                            <div class="a" style="padding-left:10px; padding-right:10px;">
+                                 
                             </div>
                         </div>
                     </div>
-                    <div style="flex:1; font-weight:bold;">
-                        <div style="color: #184E6F; padding:5px;">
-                            Sensor 1
+                    <div style="flex:1;  font-weight:bold;">
+                        <div style="display: flex; color: #23567B; padding-bottom:5px;">
+                            <div style="flex:1;"> Sensor </div>
+                            <div style="flex:1;"> Temp </div>
+                            <div style="flex:1;"> Humidity </div>
                         </div>
-                        <div style="color: #808080;">
-                            Temperature
-                        </div>
-                        <div style="color: #184E6F; padding:5px;">
-                             35*C 
-                        </div>
-                        <div style="color: #808080;">
-                             15:30 29/05/20222 
+                        <div style="display: flex;">
+                            <div style="width: 80px; color: #FF0000">
+                                <div> Sensor 2 </div>
+                                <div> Sensor 3 </div>
+                                <div> Sensor 4 </div>
+                            </div>
+                            <div style="flex:1;">
+                                <div>
+                                    <input id="s2_t" type="number" value="7600" style="width:60px; text-align:center;" />
+                                </div>
+                                <div>
+                                    <input id="s3_t" type="number" value="40" style="width:60px; text-align:center;" />
+                                </div>
+                                <div>
+                                    <input id="s4_t" type="number" value="40" style="width: 60px; text-align: center;" />
+                                </div>
+                            </div>
+                            <div style="flex:1;">
+                                <div>
+                                    <input id="s2_h" type="number" value="40" style="width: 60px; text-align: center;" />
+                                </div>
+                                <div>
+                                    <input id="s3_h" type="number" value="40" style="width: 60px; text-align: center;" />
+                                </div>
+                                <div>
+                                    <input id="s4_h" type="number" value="40" style="width: 60px; text-align: center;" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                 <script>
-                     $(window).on("load", function ()
-                     {
-                         notifyMe("Mahlare");
-                     })
-                     function notifyMe(str)
-                     {
-                         if (!("Notification" in window)) {
-                             alert("This browser does not support desktop notification");
-                         } 
-                         else if (Notification.permission === "granted")
-                         {
-                             var notification = new Notification(str);
-                         }   
-                         else if (Notification.permission !== "denied")
-                         {
-                             Notification.requestPermission().then(function (permission)
-                             { 
-                                 if (permission === "granted") {
-                                     var notification = new Notification(str);
-                                 }
-                             });
-                         }
+                <script>
+                    $(window).on("load", function () {
+                        //notifyMe("Mahlare");
+                    })
+                    function notifyMe(str) {
+                        if (!("Notification" in window)) {
+                            alert("This browser does not support desktop notification");
+                        }
+                        else if (Notification.permission === "granted") {
+                            var notification = new Notification(str);
+                        }
+                        else if (Notification.permission !== "denied") {
+                            Notification.requestPermission().then(function (permission) {
+                                if (permission === "granted") {
+                                    var notification = new Notification(str);
+                                }
+                            });
+                        }
 
-                         // At last, if the user has denied notifications, and you 
-                         // want to be respectful there is no need to bother them any more.
-                     }
-                 </script>
+                        // At last, if the user has denied notifications, and you
+                        // want to be respectful there is no need to bother them any more.
+                    }
+                </script>
             </div>
         </section>
 
@@ -384,7 +456,7 @@
                                         // ----------
                                     },
                                     error: function (response) {
-                                        alert("error");
+                                        //alert("error");
                                     }
                                 });
                             }
